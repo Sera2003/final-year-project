@@ -1,0 +1,18 @@
+{
+  "userId": "69f0f700518b6809694ba492",
+  "name": "kamal Malek",
+  "email": "kamalmalek@email.com",
+  "profilePicture": "",
+  "fitnessPreferences": [
+    "Weightlifting",
+    "Cardio",
+    "Yoga",
+    "CrossFit"
+  ],
+  "bodyMeasurements": {
+    "height": null,
+    "weight": null,
+    "unit": "metric"
+  },
+  "createdAt": "2026-04-28T18:05:52.613Z"
+}

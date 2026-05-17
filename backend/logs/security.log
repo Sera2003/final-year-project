@@ -1,0 +1,145 @@
+{"level":"info","message":"Logout success - userId: 692d48beefc8d23a29b5dfe0","timestamp":"2025-12-01T10:01:09.320Z"}
+{"level":"warn","message":"Login failed - user not found: arakelianhera@gmail.com","timestamp":"2025-12-01T10:01:12.943Z"}
+{"level":"info","message":"Login success - user: seraarakelian@gmail.com","timestamp":"2025-12-01T10:01:48.069Z"}
+{"level":"info","message":"Logout success - userId: 692d48beefc8d23a29b5dfe0","timestamp":"2025-12-01T10:02:18.899Z"}
+{"level":"warn","message":"Login failed - wrong password: seraarakelian@gmail.com","timestamp":"2025-12-01T10:02:36.083Z"}
+{"level":"warn","message":"Login failed - wrong password: seraarakelian@gmail.com","timestamp":"2025-12-01T10:04:05.686Z"}
+{"level":"warn","message":"Login failed - wrong password: seraarakelian@gmail.com","timestamp":"2025-12-01T10:08:25.207Z"}
+{"level":"warn","message":"Register failed - user already exists: seraarakelian@gmail.com","timestamp":"2025-12-01T10:10:05.097Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2025-12-01T11:37:53.350Z"}
+{"level":"info","message":"Admin login success - admin: admin@email.com","timestamp":"2025-12-01T11:38:02.399Z"}
+{"level":"info","message":"Admin login success - admin: admin@email.com","timestamp":"2025-12-01T12:29:49.929Z"}
+{"level":"warn","message":"Admin login failed - not found / not admin: admin@gmail.com","timestamp":"2025-12-01T12:41:48.238Z"}
+{"level":"info","message":"Admin login success - admin: admin@email.com","timestamp":"2025-12-01T12:41:55.724Z"}
+{"level":"warn","message":"Register failed - weak password for email: sarsur@email.com","timestamp":"2026-01-12T15:52:56.994Z"}
+{"level":"info","message":"Register success - user: sarsur@email.com","timestamp":"2026-01-12T15:53:26.469Z"}
+{"level":"info","message":"Logout success - userId: 696518f6b976cb5ff2f81214","timestamp":"2026-01-12T15:53:33.498Z"}
+{"level":"info","message":"Login success - user: sarsur@email.com","timestamp":"2026-01-12T15:53:58.137Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-01-12T15:55:15.247Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-01-12T15:55:16.511Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-01-12T15:55:19.107Z"}
+{"level":"info","message":"Admin login success - admin: sarsur@email.com","timestamp":"2026-01-12T15:55:55.124Z"}
+{"level":"info","message":"Register success - user: kamal@gmail.com","timestamp":"2026-02-22T17:52:02.484Z"}
+{"level":"warn","message":"Register failed - weak password for email: kamalmalek@email.com","timestamp":"2026-04-08T16:10:01.085Z"}
+{"level":"warn","message":"Register failed - weak password for email: kamalmalek@email.com","timestamp":"2026-04-08T16:10:11.895Z"}
+{"level":"info","message":"Register success - user: kamalmalek@email.com","timestamp":"2026-04-08T16:10:24.788Z"}
+{"level":"info","message":"Logout success - userId: 69d67df037a0c7d68ea32d4b","timestamp":"2026-04-08T16:12:59.340Z"}
+{"level":"warn","message":"Login failed - wrong password: admin@email.com","timestamp":"2026-04-09T17:55:41.948Z"}
+{"level":"warn","message":"Login failed - wrong password: admin@email.com","timestamp":"2026-04-09T17:55:50.379Z"}
+{"level":"warn","message":"Login failed - wrong password: admin@email.com","timestamp":"2026-04-09T17:55:55.861Z"}
+{"level":"info","message":"Register success - user: kamal@account.com","timestamp":"2026-04-09T17:56:56.844Z"}
+{"level":"info","message":"Logout success - userId: 69d7e868d9410df28b85fa8e","timestamp":"2026-04-09T17:58:00.940Z"}
+{"level":"info","message":"Login success - user: admin@email.com","timestamp":"2026-04-09T17:58:12.455Z"}
+{"level":"info","message":"Login success - user: kamalmalek@email.com","timestamp":"2026-04-14T15:53:08.282Z"}
+{"level":"info","message":"Logout success - userId: 69d67df037a0c7d68ea32d4b","timestamp":"2026-04-16T21:06:42.490Z"}
+{"level":"warn","message":"Register failed - weak password for email: kamatest2@example.com","timestamp":"2026-04-17T13:01:25.439Z"}
+{"level":"info","message":"Register success - user: kamatest2@example.com","timestamp":"2026-04-17T13:03:43.255Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:43.455Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:43.622Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:43.795Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:44.008Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:44.195Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:44.340Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:45.071Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:45.228Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:45.435Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:45.693Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:45.905Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:46.144Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.026Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.030Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.203Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.209Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.488Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.492Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.669Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.673Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.834Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:47.837Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:48.095Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:48.118Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:48.822Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:48.866Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:48.982Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.016Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.126Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.147Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.286Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.328Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.332Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.532Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.535Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.573Z"}
+{"level":"warn","message":"Register failed - user already exists: kamatest2@example.com","timestamp":"2026-04-17T13:03:49.716Z"}
+{"level":"info","message":"Logout success - userId: 69e22fafed6212a39fb84d86","timestamp":"2026-04-20T11:45:57.273Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:13.638Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:15.902Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:18.570Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:20.228Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:20.815Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:21.063Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:21.212Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:21.759Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:21.925Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:22.133Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:24.774Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:25.275Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:25.520Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:25.810Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:26.039Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:26.158Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:26.356Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:26.685Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:37:27.015Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:39:58.906Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:39:58.934Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T08:43:09.297Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-04-26T13:56:40.325Z"}
+{"level":"info","message":"Admin login success - admin: admin@email.com","timestamp":"2026-04-26T13:56:44.891Z"}
+{"level":"warn","message":"Login failed - user not found: kamalmalek@email.com","timestamp":"2026-04-28T15:55:05.844Z"}
+{"level":"warn","message":"Login failed - user not found: kamalmalek@email.com","timestamp":"2026-04-28T17:59:38.025Z"}
+{"level":"warn","message":"Login failed - user not found: kamalmalek@email.com","timestamp":"2026-04-28T17:59:39.119Z"}
+{"level":"warn","message":"Register failed - user already exists: kamalmalek@email.com","timestamp":"2026-04-28T18:06:18.749Z"}
+{"level":"warn","message":"Register failed - user already exists: kamalmalek@email.com","timestamp":"2026-04-28T18:10:56.021Z"}
+{"level":"warn","message":"Register failed - user already exists: kamalmalek@email.com","timestamp":"2026-04-28T18:10:57.797Z"}
+{"level":"warn","message":"Register failed - user already exists: kamalmalek@email.com","timestamp":"2026-04-28T18:11:14.058Z"}
+{"level":"info","message":"Login success - user: kamalmalek@email.com","timestamp":"2026-04-28T18:11:17.834Z"}
+{"level":"warn","message":"Login failed - user not found: kamalmalek@email.com","timestamp":"2026-04-29T20:33:46.486Z"}
+{"level":"info","message":"Register success - user: kamalmalek@email.com","timestamp":"2026-04-29T20:33:54.354Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T12:53:19.448Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T12:54:46.170Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T12:54:52.779Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T12:55:01.443Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T12:55:03.277Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T13:02:23.461Z"}
+{"level":"warn","message":"Admin login failed - wrong password: admin@email.com","timestamp":"2026-05-01T13:02:33.141Z"}
+{"level":"info","message":"Admin login success - admin: admin@email.com","timestamp":"2026-05-01T13:06:58.774Z"}
+{"level":"info","message":"Logout success - userId: 692c8f7806e0484e03920579","timestamp":"2026-05-01T13:22:54.273Z"}
+{"level":"info","message":"Login success - user: kamalmalek@email.com","timestamp":"2026-05-01T13:23:00.809Z"}
+{"level":"warn","message":"Register failed - user already exists: seraarakelian@gmail.com","timestamp":"2026-05-17T10:02:15.686Z"}
+{"level":"warn","message":"Register failed - weak password for email: testtryon@email.com","timestamp":"2026-05-17T10:02:28.518Z"}
+{"level":"warn","message":"Register failed - weak password for email: testtryon@email.com","timestamp":"2026-05-17T10:02:37.964Z"}
+{"level":"warn","message":"Register failed - weak password for email: testtryon@email.com","timestamp":"2026-05-17T10:02:48.425Z"}
+{"level":"info","message":"Register success - user: testtryon@email.com","timestamp":"2026-05-17T10:02:54.146Z"}
+{"level":"info","message":"Admin login success - admin: sarsur@email.com","timestamp":"2026-05-17T10:06:50.009Z"}
+{"level":"info","message":"Logout success - userId: 696518f6b976cb5ff2f81214","timestamp":"2026-05-17T10:10:08.502Z"}
+{"level":"info","message":"Login success - user: testtryon@email.com","timestamp":"2026-05-17T10:10:21.747Z"}
+{"level":"info","message":"Logout success - userId: 6a09924e162781f054001c06","timestamp":"2026-05-17T10:34:18.217Z"}
+{"level":"info","message":"Register success - user: testtryon2@email.com","timestamp":"2026-05-17T10:34:55.818Z"}
+{"level":"info","message":"Logout success - userId: 6a0999cfb8d0307a36a15317","timestamp":"2026-05-17T11:03:43.465Z"}
+{"level":"info","message":"Login success - user: testtryon@email.com","timestamp":"2026-05-17T11:03:55.615Z"}
+{"level":"info","message":"Logout success - userId: 6a09924e162781f054001c06","timestamp":"2026-05-17T11:04:16.802Z"}
+{"level":"info","message":"Register success - user: testtryon3@email.com","timestamp":"2026-05-17T11:04:37.870Z"}
+{"level":"info","message":"Logout success - userId: 6a09a0c59661bc83606bb7a3","timestamp":"2026-05-17T12:14:49.369Z"}
+{"level":"info","message":"Login success - user: seraarakelian@gmail.com","timestamp":"2026-05-17T12:14:59.473Z"}
+{"level":"warn","message":"Admin login failed - wrong password: sarsur@email.com","timestamp":"2026-05-17T13:36:23.185Z"}
+{"level":"info","message":"Admin login success - admin: sarsur@email.com","timestamp":"2026-05-17T13:36:28.222Z"}
+{"level":"info","message":"Logout success - userId: 696518f6b976cb5ff2f81214","timestamp":"2026-05-17T13:36:45.743Z"}
+{"level":"info","message":"Login success - user: seraarakelian@gmail.com","timestamp":"2026-05-17T13:36:58.249Z"}
+{"level":"info","message":"Logout success - userId: 6a09924e162781f054001c06","timestamp":"2026-05-17T13:37:18.917Z"}
+{"level":"info","message":"Login success - user: seraarakelian@gmail.com","timestamp":"2026-05-17T13:37:25.815Z"}
+{"level":"info","message":"Admin login success - admin: sarsur@email.com","timestamp":"2026-05-17T13:40:41.504Z"}
+{"level":"info","message":"Logout success - userId: 696518f6b976cb5ff2f81214","timestamp":"2026-05-17T13:58:18.512Z"}
+{"level":"info","message":"Login success - user: seraarakelian@gmail.com","timestamp":"2026-05-17T13:58:26.549Z"}
+{"level":"info","message":"Admin login success - admin: sarsur@email.com","timestamp":"2026-05-17T14:03:44.471Z"}
+{"level":"info","message":"Admin login success - admin: sarsur@email.com","timestamp":"2026-05-17T17:05:47.551Z"}

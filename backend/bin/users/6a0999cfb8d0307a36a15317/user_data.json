@@ -1,0 +1,16 @@
+{
+  "userId": "6a0999cfb8d0307a36a15317",
+  "name": "testtryon2@gmail.com",
+  "email": "testtryon2@email.com",
+  "profilePicture": "/users/6a0999cfb8d0307a36a15317/profile.jpg",
+  "fitnessPreferences": [
+    "Cardio"
+  ],
+  "bodyMeasurements": {
+    "height": 157,
+    "weight": 80,
+    "unit": "metric"
+  },
+  "createdAt": "2026-05-17T10:34:55.807Z",
+  "updatedAt": "2026-05-17T10:54:27.885Z"
+}

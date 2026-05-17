@@ -1,0 +1,13 @@
+{
+  "userId": "692c8f7806e0484e03920579",
+  "name": "admin",
+  "email": "admin@email.com",
+  "profilePicture": "",
+  "fitnessPreferences": [],
+  "bodyMeasurements": {
+    "height": 175,
+    "weight": 70,
+    "unit": "metric"
+  },
+  "updatedAt": "2026-05-01T13:20:22.714Z"
+}

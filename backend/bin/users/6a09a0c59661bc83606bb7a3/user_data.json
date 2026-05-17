@@ -1,0 +1,14 @@
+{
+  "userId": "6a09a0c59661bc83606bb7a3",
+  "name": "test",
+  "email": "testtryon3@email.com",
+  "profilePicture": "/users/6a09a0c59661bc83606bb7a3/profile.jpg",
+  "fitnessPreferences": [],
+  "bodyMeasurements": {
+    "height": null,
+    "weight": null,
+    "unit": "metric"
+  },
+  "createdAt": "2026-05-17T11:04:37.859Z",
+  "updatedAt": "2026-05-17T11:05:44.454Z"
+}

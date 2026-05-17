@@ -1,0 +1,15 @@
+{
+  "userId": "6a09924e162781f054001c06",
+  "name": "sera",
+  "email": "testtryon@email.com",
+  "profilePicture": "/users/6a09924e162781f054001c06/profile.webp",
+  "fitnessPreferences": [
+    "Weightlifting"
+  ],
+  "bodyMeasurements": {
+    "height": null,
+    "weight": null,
+    "unit": "metric"
+  },
+  "createdAt": "2026-05-17T10:02:54.136Z"
+}

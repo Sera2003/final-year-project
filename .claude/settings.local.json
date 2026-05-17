@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm ci:*)",
+      "Bash(npm list:*)",
+      "Bash(npm run:*)",
+      "Bash(npm start:*)",
+      "Bash(curl:*)",
+      "Bash(chmod:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(./scripts/test-docker-setup.sh)",
+      "Bash(docker-compose config:*)",
+      "Bash(docker-compose build:*)",
+      "Bash(docker pull:*)",
+      "Bash(docker-compose ps:*)",
+      "Bash(docker-compose logs:*)",
+      "Bash(docker-compose port:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(./scripts/test-containerized-app.sh)",
+      "Bash(mongosh:*)",
+      "Bash(ls:*)",
+      "Bash(node:*)"
+    ]
+  }
+}

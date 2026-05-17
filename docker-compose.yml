@@ -1,0 +1,78 @@
+services:
+  # MongoDB service
+  mongodb:
+    image: mongo:7.0
+    container_name: wolffitness-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: wolffitness-backend
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - NODE_ENV=development
+      - DOCKER_ENV=true
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/WolfFitness?authSource=admin
+      - PORT=4000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - product_images:/app/bin/products
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: wolffitness-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+      # Browser must call a host-reachable backend URL, not Docker service DNS.
+      - VITE_BACKEND_URL=http://localhost:4000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    env_file:
+      - ./frontend/.env.development
+
+ # Admin service
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.dev
+    container_name: wolffitness-admin
+    ports:
+      - "5174:5174"
+    environment:
+      - NODE_ENV=development
+      - VITE_BACKEND_URL=http://localhost:4000
+    depends_on:
+      - backend
+    volumes:
+      - ./admin:/app
+      - /app/node_modules
+    env_file:
+      - ./admin/.env
+
+      
+volumes:
+  mongodb_data:
+  product_images:
