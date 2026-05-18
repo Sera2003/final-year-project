@@ -29,7 +29,10 @@ const List = ({ token }) => {
       const response = await axios.post(
         backendUrl + '/api/product/remove',
         { id },
-        { withCredentials: true }
+{
+  withCredentials: true,
+  headers: { token }
+}
       );
 
       if (response.data.success) {

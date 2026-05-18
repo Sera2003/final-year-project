@@ -12,6 +12,8 @@ const Dashboard = ({ token }) => {
     try {
       const response = await axios.get(backendUrl + "/api/dashboard/stats", {
         withCredentials: true,
+            headers: { token }
+
       });
 
       if (response.data.success) {

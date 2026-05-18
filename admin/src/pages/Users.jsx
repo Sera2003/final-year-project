@@ -19,6 +19,8 @@ const Users = ({ token }) => {
     try {
       const response = await axios.get(backendUrl + "/api/user/all", {
         withCredentials: true,
+          headers: { token }
+
       });
 
       if (response.data.success) {

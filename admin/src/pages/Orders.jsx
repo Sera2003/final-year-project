@@ -21,8 +21,10 @@ const Orders = ({ token }) => {
       const response = await axios.post(
         backendUrl + '/api/order/list',
         {},
-        { withCredentials: true }
-      )
+{
+  withCredentials: true,
+  headers: { token }
+}      )
 
       if (response.data.success) {
         setOrders(response.data.orders)
