@@ -263,18 +263,21 @@ const getUserCart = async () => {
 };
 
 const fetchUserProfile = async () => {
-    if (!token) return;
-    try {
-        const response = await axios.get(backendUrl + '/api/user/profile', {
-            withCredentials: true,
-            headers: { token: token || localStorage.getItem("token") }
-        });
-        if (response.data.success) {
-            setUserProfile(response.data.user);
-        }
-    } catch (error) {
-        console.log("Error fetching user profile", error);
+  const savedToken = token || localStorage.getItem("token");
+  if (!savedToken) return;
+
+  try {
+    const response = await axios.get(backendUrl + '/api/user/profile', {
+      withCredentials: true,
+      headers: { token: savedToken }
+    });
+
+    if (response.data.success) {
+      setUserProfile(response.data.user);
     }
+  } catch (error) {
+    console.log("Error fetching user profile", error);
+  }
 };
 
     useEffect(() => {
@@ -283,17 +286,17 @@ const fetchUserProfile = async () => {
     }, [])
 
 useEffect(() => {
-    // Restore token from localStorage (if you still use it as a flag)
-    const storedToken = localStorage.getItem('token');
-    if (!token && storedToken) {
-        setToken(storedToken);
-    }
+  const storedToken = localStorage.getItem("token");
 
-    // Only try to load cart if we *think* the user is logged in
-    if (token || storedToken) {
-        getUserCart();
-        fetchUserProfile();
-    }
+  if (!token && storedToken) {
+    setToken(storedToken);
+    return;
+  }
+
+  if (token) {
+    getUserCart();
+    fetchUserProfile();
+  }
 }, [token]);   // runs once when app loads
 
     const value = {

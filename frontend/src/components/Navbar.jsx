@@ -26,8 +26,8 @@ const Navbar = () => {
       : `${backendUrl}${userProfile.profilePicture}`
     : '';
 
-  const displayName = userProfile?.name?.split(' ')[0] || 'Profile';
-
+const savedToken = token || localStorage.getItem("token");
+const displayName = userProfile?.name?.split(' ')[0] || 'Profile';
   const logout = async () => {
     try {
       await axios.post(
@@ -105,11 +105,10 @@ const Navbar = () => {
         {/* Profile */}
         <div className="group relative">
           <button
-            onClick={() => (token ? navigate('/profile') : navigate('/login'))}
-            className="flex items-center gap-2 cursor-pointer"
+onClick={() => (savedToken ? navigate('/profile') : navigate('/login'))}            className="flex items-center gap-2 cursor-pointer"
             type="button"
           >
-            {token && profileImage ? (
+            {savedToken && profileImage ? (
               <img
                 className="w-8 h-8 rounded-full object-cover border border-gray-300"
                 src={profileImage}
@@ -122,7 +121,7 @@ const Navbar = () => {
                 alt="profile"
               />
             )}
-            {token && (
+            {savedToken && (
               <span className="hidden lg:block max-w-24 truncate text-sm text-gray-700">
                 {displayName}
               </span>
@@ -130,7 +129,7 @@ const Navbar = () => {
           </button>
 
           {/* Dropdown Menu (only if logged in) */}
-          {token && (
+          {savedToken && (
             <div className="group-hover:block hidden absolute right-0 pt-4">
               <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
                 <p onClick={() => navigate('/profile')} className="cursor-pointer hover:text-black">

@@ -35,6 +35,13 @@ const [showReviewsList, setShowReviewsList] = useState(false);
     productData?.sizes || []
   );
 
+  useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}, [productId]);
+
   const fetchReviews = async () => {
     try {
       const res = await axios.get(`${backendUrl}/api/review/${productId}`);
