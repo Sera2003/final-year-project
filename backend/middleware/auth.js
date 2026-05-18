@@ -3,16 +3,13 @@ import userModel from '../models/userModel.js';
 
 const auth = async (req, res, next) => {
   try {
-    // ⬇️ READ TOKEN FROM COOKIE INSTEAD OF HEADER
-    const token = req.cookies.authToken;
+    const token = req.cookies.authToken || req.headers.token;
 
     if (!token) {
       return res.status(401).json({ success: false, message: "No token provided" });
     }
 
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // decoded contains: { id, tokenVersion, iat, exp }
 
     const user = await userModel.findById(decoded.id);
 
@@ -20,12 +17,11 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ success: false, message: "User not found" });
     }
 
-    // 🔐 Compare tokenVersion from token vs database
     if (user.tokenVersion !== decoded.tokenVersion) {
       return res.status(401).json({ success: false, message: "Session expired. Please log in again." });
     }
 
-    req.user = user; // attach authenticated user
+    req.user = user;
     next();
 
   } catch (error) {

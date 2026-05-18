@@ -38,11 +38,14 @@ const Orders = ({ token }) => {
 
   const statusHandler = async (event, orderId) => {
     try {
-      const response = await axios.post(
-        backendUrl + '/api/order/status',
-        { orderId, status: event.target.value },
-        { withCredentials: true }
-      )
+const response = await axios.post(
+  backendUrl + '/api/order/status',
+  { orderId, status: event.target.value },
+  {
+    withCredentials: true,
+    headers: { token }
+  }
+)
 
       if (response.data.success) {
         await fetchAllOrders()
