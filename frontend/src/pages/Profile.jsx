@@ -123,8 +123,12 @@ const Profile = () => {
 
       const response = await axios.put(`${backendUrl}/api/user/profile`, formData, {
         withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" }
-      });
+        
+  headers: {
+    "Content-Type": "multipart/form-data",
+    token: token || localStorage.getItem("token")
+  }      
+});
 
       if (!response.data.success) {
         toast.error(response.data.message || "Failed to save profile photo.");
@@ -153,7 +157,10 @@ const Profile = () => {
       const response = await axios.put(
         `${backendUrl}/api/user/profile`,
         { removeProfilePicture: true },
-        { withCredentials: true }
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}
       );
 
       if (!response.data.success) {
@@ -201,7 +208,10 @@ const Profile = () => {
             unit
           }
         },
-        { withCredentials: true }
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}
       );
 
       if (response.data.success) {

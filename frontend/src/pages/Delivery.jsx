@@ -28,7 +28,10 @@ const Delivery = () => {
     try {
       const response = await axios.get(
         backendUrl + "/api/user/delivery-address",
-        { withCredentials: true }
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}
       );
 
       if (response.data.success && response.data.deliveryAddress) {

@@ -93,8 +93,10 @@ const addToCart = async (itemId, size) => {
         await axios.post(
             backendUrl + '/api/cart/add',
             { itemId, size },
-            { withCredentials: true }
-        );
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}        );
     } catch (error) {
         console.log(error);
         toast.error(error.message);
@@ -139,8 +141,10 @@ const addToCart = async (itemId, size) => {
             await axios.post(
                 backendUrl + '/api/cart/update',
                 { itemId, size, quantity },
-                { withCredentials: true }        // 🔑 use cookie instead of header
-            );
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}            );
         } catch (error) {
             console.log(error);
 
@@ -235,8 +239,10 @@ const getUserCart = async () => {
         const response = await axios.post(
             backendUrl + '/api/cart/get',
             {},
-            { withCredentials: true }   // 🔑 send auth cookie
-        );
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}        );
 
         if (response.data.success) {
             setCartItems(response.data.cartData);
@@ -260,7 +266,8 @@ const fetchUserProfile = async () => {
     if (!token) return;
     try {
         const response = await axios.get(backendUrl + '/api/user/profile', {
-            withCredentials: true
+            withCredentials: true,
+            headers: { token: token || localStorage.getItem("token") }
         });
         if (response.data.success) {
             setUserProfile(response.data.user);

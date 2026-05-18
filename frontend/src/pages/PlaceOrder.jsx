@@ -73,7 +73,10 @@ case 'cod':
   const response = await axios.post(
     backendUrl + '/api/order/place',
     orderData,
-    { withCredentials: true }       // ⬅️ use cookie instead of header
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}
   );
   console.log(response.data.success);
   if (response.data.success) {
@@ -89,7 +92,10 @@ case 'stripe':
   const responseStripe = await axios.post(
     backendUrl + '/api/order/stripe',
     orderData,
-    { withCredentials: true }       // ⬅️ same fix here
+    {
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}       // ⬅️ same fix here
   );
   if (responseStripe.data.success) {
     const { session_url } = responseStripe.data;

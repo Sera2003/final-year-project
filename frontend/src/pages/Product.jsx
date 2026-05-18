@@ -74,7 +74,10 @@ const [showReviewsList, setShowReviewsList] = useState(false);
           rating: reviewRating,
           comment: reviewComment,
         },
-        { withCredentials: true }
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}
       );
 
       if (res.data.success) {
@@ -156,7 +159,10 @@ const [showReviewsList, setShowReviewsList] = useState(false);
           productImageUrl: image,
           productId: productData._id,
         },
-        { withCredentials: true }
+{
+  withCredentials: true,
+  headers: { token: token || localStorage.getItem("token") }
+}
       );
 
       if (!res.data?.success) {
