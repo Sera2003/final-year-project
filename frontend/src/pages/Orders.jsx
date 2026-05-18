@@ -5,15 +5,16 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const Orders = () => {
-  const { backendUrl, currency } = useContext(ShopContext);
-  const [orders, setOrders] = useState([]);
+const { backendUrl, currency, token } = useContext(ShopContext);  const [orders, setOrders] = useState([]);
 
   const loadOrderData = async () => {
     try {
       const response = await axios.post(
         backendUrl + '/api/order/userorders',
         {},
-        { withCredentials: true }
+{
+  withCredentials: true,
+headers: { token: localStorage.getItem("token") || token }}
       );
 
       if (response.data.success) {

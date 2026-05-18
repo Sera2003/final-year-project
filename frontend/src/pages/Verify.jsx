@@ -14,12 +14,22 @@ const Verify = () => {
 
     const verifyPayment = async () => {
         try {
-            if (!token) {
-                return null
-            }
+const savedToken = token || localStorage.getItem("token");
 
-            const response = await axios.post(backendUrl + '/api/order/verifyStripe', { success, orderId }, { headers: { token } })
+if (!savedToken) {
+  return null;
+}
 
+const response = await axios.post(
+  backendUrl + '/api/order/verifyStripe',
+  { success, orderId },
+  {
+    withCredentials: true,
+    headers: {
+      token: savedToken
+    }
+  }
+);
             if (response.data.success) {
                 setCartItems({})
                 navigate('/orders')
