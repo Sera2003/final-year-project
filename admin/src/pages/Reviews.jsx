@@ -7,23 +7,28 @@ import { assets } from "../assets/assets";
 const Reviews = ({ token }) => {
   const [reviews, setReviews] = useState([]);
 
-  const fetchReviews = async () => {
-    if (!token) return;
+const fetchReviews = async () => {
+  const savedToken = token || localStorage.getItem("token");
 
-    try {
-      const response = await axios.get(backendUrl + "/api/review/all", {
-        withCredentials: true,
-      });
+  if (!savedToken) return;
 
-      if (response.data.success) {
-        setReviews(response.data.reviews);
-      } else {
-        toast.error(response.data.message);
+  try {
+    const response = await axios.get(backendUrl + "/api/review/all", {
+      withCredentials: true,
+      headers: {
+        token: savedToken
       }
-    } catch (error) {
-      toast.error(error.response?.data?.message || error.message);
+    });
+
+    if (response.data.success) {
+      setReviews(response.data.reviews);
+    } else {
+      toast.error(response.data.message);
     }
-  };
+  } catch (error) {
+    toast.error(error.response?.data?.message || error.message);
+  }
+};
 
   useEffect(() => {
     fetchReviews();
