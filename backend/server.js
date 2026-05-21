@@ -1,3 +1,5 @@
+import dns from "node:dns";
+dns.setDefaultResultOrder("ipv4first");
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
@@ -20,6 +22,7 @@ import errorHandler from './middleware/errorHandler.js';
 import tryonRouter from "./routes/tryonRoute.js";
 import reviewRouter from './routes/reviewRoute.js';
 import dashboardRouter from './routes/dashboardRoute.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
