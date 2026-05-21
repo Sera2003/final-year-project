@@ -51,7 +51,11 @@ const Login = () => {
 
       try {
         if (isForgotPassword) {
-            const response = await axios.post(backendUrl + '/api/user/forgot-password', { email });
+            const response = await axios.post(
+                backendUrl + '/api/user/forgot-password',
+                { email },
+                { timeout: 15000 }
+            );
             if (response.data.success) {
                 toast.success(response.data.message);
                 setCurrentState('Reset Password');
@@ -59,11 +63,15 @@ const Login = () => {
                 toast.error(response.data.message);
             }
         } else if (isResetPassword) {
-            const response = await axios.post(backendUrl + '/api/user/reset-password', {
-                email,
-                code: resetCode,
-                password
-            });
+            const response = await axios.post(
+                backendUrl + '/api/user/reset-password',
+                {
+                    email,
+                    code: resetCode,
+                    password
+                },
+                { timeout: 15000 }
+            );
             if (response.data.success) {
                 toast.success(response.data.message);
                 setPassword('');
@@ -127,7 +135,7 @@ localStorage.setItem('tokenExpiry', expiryTime)
     toast.error(backendMessage);
   } else {
     // Fallback for network errors, etc.
-    toast.error(error.message || "Something went wrong");
+    toast.error(error.code === 'ECONNABORTED' ? "Email request timed out. Please check backend email settings." : error.message || "Something went wrong");
   }
       } finally {
         setIsSubmitting(false);

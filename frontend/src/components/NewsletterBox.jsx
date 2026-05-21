@@ -15,7 +15,11 @@ const NewsletterBox = () => {
 
         setIsSubmitting(true)
         try {
-          const response = await axios.post(`${backendUrl}/api/newsletter/subscribe`, { email })
+          const response = await axios.post(
+            `${backendUrl}/api/newsletter/subscribe`,
+            { email },
+            { timeout: 15000 }
+          )
 
           if (response.data.success) {
             toast.success(response.data.message)
@@ -26,7 +30,7 @@ const NewsletterBox = () => {
             toast.error(response.data.message || 'Failed to subscribe.')
           }
         } catch (error) {
-          toast.error(error.response?.data?.message || error.message || 'Failed to subscribe.')
+          toast.error(error.code === 'ECONNABORTED' ? 'Email request timed out. Please check backend email settings.' : error.response?.data?.message || error.message || 'Failed to subscribe.')
         } finally {
           setIsSubmitting(false)
       }

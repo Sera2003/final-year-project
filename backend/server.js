@@ -77,16 +77,13 @@ app.get('/', (req, res) => {
 app.use(errorHandler);
 
 
-// Check if we're running in Docker environment
-const isDocker = process.env.NODE_ENV === 'production' || process.env.DOCKER_ENV === 'true';
+const shouldUseHttps = process.env.FORCE_HTTPS === 'true';
 
-if (isDocker) {
-  // In Docker, use HTTP
+if (!shouldUseHttps) {
   app.listen(port, '0.0.0.0', () => {
     console.log("HTTP Server running on http://0.0.0.0:" + port);
   });
 } else {
-  // In development, use HTTPS
   const httpsOptions = {
     key: fs.readFileSync('localhost+1-key.pem'),
     cert: fs.readFileSync('localhost+1.pem'),
