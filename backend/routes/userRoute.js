@@ -3,6 +3,8 @@ import {
   loginUser,
   registerUser,
   adminLogin,
+  forgotPassword,
+  resetPassword,
   logoutUser,
   getUserProfile,
   updateUserProfile,
@@ -19,6 +21,8 @@ const userRouter = express.Router();
 userRouter.post('/register', upload.single('profilePicture'), registerUser);
 userRouter.post('/login', loginUser);
 userRouter.post('/admin', adminLogin);
+userRouter.post('/forgot-password', forgotPassword);
+userRouter.post('/reset-password', resetPassword);
 userRouter.post('/logout', authUser, logoutUser);
 
 userRouter.get('/profile', authUser, getUserProfile);

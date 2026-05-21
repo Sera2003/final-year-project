@@ -1,18 +1,22 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
+import newsletterModel from "../models/newsletterModel.js";
 import Stripe from "stripe";
 
 const currency = "inr";
 const deliveryCharge = 10;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const calculateOrderTotals = (items, couponCode) => {
+const calculateOrderTotals = async (items, couponCode) => {
   const subtotal = items.reduce((total, item) => {
     return total + Number(item.price || 0) * Number(item.quantity || 0);
   }, 0);
 
   const normalizedCode = String(couponCode || "").trim().toUpperCase();
-  const discountPercent = normalizedCode === "WOLF20" ? 20 : 0;
+  const discount = normalizedCode
+    ? await newsletterModel.findOne({ discountCode: normalizedCode, usedAt: null })
+    : null;
+  const discountPercent = discount ? 20 : 0;
   const discountAmount = Math.round((subtotal * discountPercent) / 100);
   const totalAmount = subtotal - discountAmount + deliveryCharge;
 
@@ -21,8 +25,16 @@ const calculateOrderTotals = (items, couponCode) => {
     discountPercent,
     discountAmount,
     totalAmount,
-    couponCode: discountPercent ? "WOLF20" : "",
+    couponCode: discountPercent ? discount.discountCode : "",
   };
+};
+
+const markDiscountUsed = async (couponCode) => {
+  if (!couponCode) return;
+  await newsletterModel.findOneAndUpdate(
+    { discountCode: couponCode, usedAt: null },
+    { $set: { usedAt: new Date() } }
+  );
 };
 
 const getUserInfoForOrder = async (userId) => {
@@ -38,7 +50,7 @@ const placeOrder = async (req, res) => {
     const userId = req.user._id;
     const { items, address, couponCode } = req.body;
 
-    const totals = calculateOrderTotals(items, couponCode);
+    const totals = await calculateOrderTotals(items, couponCode);
     const userInfo = await getUserInfoForOrder(userId);
 
     const orderData = {
@@ -60,6 +72,7 @@ const placeOrder = async (req, res) => {
     await newOrder.save();
 
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
+    await markDiscountUsed(totals.couponCode);
 
     res.json({ success: true, message: "Order Placed" });
   } catch (error) {
@@ -74,7 +87,7 @@ const placeOrderStripe = async (req, res) => {
     const { items, address, couponCode } = req.body;
     const { origin } = req.headers;
 
-    const totals = calculateOrderTotals(items, couponCode);
+    const totals = await calculateOrderTotals(items, couponCode);
     const userInfo = await getUserInfoForOrder(userId);
 
     const orderData = {
@@ -128,8 +141,9 @@ const verifyStripe = async (req, res) => {
 
   try {
     if (success === "true") {
-      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      const order = await orderModel.findByIdAndUpdate(orderId, { payment: true }, { new: true });
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
+      await markDiscountUsed(order?.couponCode);
       res.json({ success: true });
     } else {
       await orderModel.findByIdAndDelete(orderId);

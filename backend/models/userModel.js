@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema({
     profilePicture: { type: String, default: "" },
     fitnessPreferences: { type: [String], default: [] },
     tokenVersion: { type: Number, default: 0 },
+    passwordResetCode: { type: String, default: "" },
+    passwordResetExpires: { type: Date, default: null },
 
     deliveryAddress: {
         firstName: { type: String, default: "" },

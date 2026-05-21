@@ -21,8 +21,8 @@ const CartTotal = () => {
   const discountAmount = getDiscountAmount();
   const total = getCartTotal();
 
-  const handleApplyCoupon = () => {
-    const result = applyDiscountCode(couponCode);
+  const handleApplyCoupon = async () => {
+    const result = await applyDiscountCode(couponCode);
 
     if (result.success) {
       toast.success(result.message);

@@ -190,15 +190,37 @@ const addToCart = async (itemId, size) => {
         return subtotal - getDiscountAmount() + delivery_fee;
     }
 
-    const applyDiscountCode = (code) => {
+    const applyDiscountCode = async (code) => {
         const normalizedCode = String(code || '').trim().toUpperCase();
-        if (normalizedCode !== 'WOLF20') {
+        if (!normalizedCode) {
             setDiscount(null);
-            return { success: false, message: 'Invalid discount code.' };
+            return { success: false, message: 'Enter a discount code.' };
         }
 
-        setDiscount({ code: 'WOLF20', percent: 20 });
-        return { success: true, message: 'WOLF20 applied. You saved 20%!' };
+        try {
+            const response = await axios.post(backendUrl + '/api/newsletter/validate-code', {
+                code: normalizedCode
+            });
+
+            if (!response.data.success) {
+                setDiscount(null);
+                return { success: false, message: response.data.message || 'Invalid discount code.' };
+            }
+
+            const appliedDiscount = {
+                code: response.data.code,
+                percent: Number(response.data.percent || 20)
+            };
+
+            setDiscount(appliedDiscount);
+            return { success: true, message: response.data.message || `${appliedDiscount.code} applied. You saved ${appliedDiscount.percent}%!` };
+        } catch (error) {
+            setDiscount(null);
+            return {
+                success: false,
+                message: error.response?.data?.message || error.message || 'Failed to validate discount code.'
+            };
+        }
     }
 
     const removeDiscountCode = () => {

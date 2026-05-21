@@ -7,6 +7,7 @@ const NewsletterBox = () => {
     const { backendUrl } = useContext(ShopContext)
     const [email, setEmail] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isHidden, setIsHidden] = useState(() => localStorage.getItem('wolfNewsletterDiscountHidden') === 'true')
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
@@ -19,6 +20,8 @@ const NewsletterBox = () => {
           if (response.data.success) {
             toast.success(response.data.message)
             setEmail('')
+            localStorage.setItem('wolfNewsletterDiscountHidden', 'true')
+            setIsHidden(true)
           } else {
             toast.error(response.data.message || 'Failed to subscribe.')
           }
@@ -26,8 +29,11 @@ const NewsletterBox = () => {
           toast.error(error.response?.data?.message || error.message || 'Failed to subscribe.')
         } finally {
           setIsSubmitting(false)
-        }
+      }
     }
+
+  if (isHidden) return null
+
   return (
     <div className='text-center'>
       <p className='text-2xl font_medium text-gray-800 '>Subscribe now & get 20% off</p>

@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 import { ShopContext } from "../context/ShopContext";
 
 const Delivery = () => {
-  const { backendUrl, navigate, setUserProfile } = useContext(ShopContext);
-
+  const { backendUrl, navigate, setUserProfile, token } = useContext(ShopContext);
   const [address, setAddress] = useState({
     firstName: "",
     lastName: "",
@@ -25,13 +24,20 @@ const Delivery = () => {
   };
 
   const fetchSavedAddress = async () => {
+    const authToken = token || localStorage.getItem("token");
+    if (!authToken) {
+      toast.error("Please login first");
+      navigate("/login");
+      return;
+    }
+
     try {
       const response = await axios.get(
         backendUrl + "/api/user/delivery-address",
-{
-  withCredentials: true,
-  headers: { token: token || localStorage.getItem("token") }
-}
+        {
+          withCredentials: true,
+          headers: { token: authToken }
+        }
       );
 
       if (response.data.success && response.data.deliveryAddress) {
@@ -54,7 +60,7 @@ const Delivery = () => {
 
   useEffect(() => {
     fetchSavedAddress();
-  }, []);
+  }, [token]);
 
   const useCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(
@@ -74,12 +80,21 @@ const Delivery = () => {
 
   const saveAddress = async (e) => {
     e.preventDefault();
+    const authToken = token || localStorage.getItem("token");
+    if (!authToken) {
+      toast.error("Please login first");
+      navigate("/login");
+      return;
+    }
 
     try {
       const response = await axios.put(
         backendUrl + "/api/user/delivery-address",
         address,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: { token: authToken }
+        }
       );
 
       if (response.data.success) {

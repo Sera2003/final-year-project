@@ -5,6 +5,23 @@ import { toast } from 'react-toastify';
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
+  const [dateFilter, setDateFilter] = useState('');
+
+  const formatAddedDate = (dateValue) => {
+    if (!dateValue) return 'Unknown';
+    return new Date(dateValue).toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  const filteredList = dateFilter
+    ? list.filter((item) => {
+        if (!item.date) return false;
+        return new Date(item.date).toISOString().slice(0, 10) === dateFilter;
+      })
+    : list;
 
   const fetchList = async () => {
     try {
@@ -53,31 +70,56 @@ const List = ({ token }) => {
 
   return (
     <div className="w-full">
-      <div className="mb-5">
-        <h2 className="text-xl font-semibold text-gray-800">All Products</h2>
-        <p className="text-sm text-gray-500">
-          Manage all products in your store.
-        </p>
+      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800">All Products</h2>
+          <p className="text-sm text-gray-500">
+            Manage all products in your store.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="text-sm font-medium text-gray-700" htmlFor="product-added-date">
+            Added day
+          </label>
+          <input
+            id="product-added-date"
+            type="date"
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 text-sm outline-none"
+          />
+          {dateFilter && (
+            <button
+              type="button"
+              onClick={() => setDateFilter('')}
+              className="border border-gray-300 rounded px-3 py-2 text-sm hover:bg-gray-100"
+            >
+              Clear
+            </button>
+          )}
+        </div>
       </div>
 
-      <div className="hidden lg:grid grid-cols-[90px_2fr_1fr_1fr_1fr_90px] items-center py-3 px-4 border bg-gray-100 text-sm font-semibold">
+      <div className="hidden lg:grid grid-cols-[90px_2fr_1fr_1fr_1fr_1fr_90px] items-center py-3 px-4 border bg-gray-100 text-sm font-semibold">
         <p>Image</p>
         <p>Name</p>
         <p>Category</p>
         <p>Sub Category</p>
         <p>Price</p>
+        <p>Added</p>
         <p className="text-center">Action</p>
       </div>
 
       <div className="flex flex-col gap-3 lg:gap-0">
-        {list.length === 0 && (
+        {filteredList.length === 0 && (
           <p className="text-gray-500 mt-5">No products found.</p>
         )}
 
-        {list.map((item) => (
+        {filteredList.map((item) => (
           <div
             key={item._id}
-            className="bg-white border p-4 lg:p-0 lg:grid lg:grid-cols-[90px_2fr_1fr_1fr_1fr_90px] lg:items-center lg:px-4 lg:py-3 text-sm"
+            className="bg-white border p-4 lg:p-0 lg:grid lg:grid-cols-[90px_2fr_1fr_1fr_1fr_1fr_90px] lg:items-center lg:px-4 lg:py-3 text-sm"
           >
             <div className="flex items-start gap-4 lg:block">
               <img
@@ -93,6 +135,7 @@ const List = ({ token }) => {
                 <p className="font-semibold mt-2">
                   {currency}{item.price}
                 </p>
+                <p className="text-gray-500 mt-1">Added {formatAddedDate(item.date)}</p>
               </div>
             </div>
 
@@ -110,6 +153,10 @@ const List = ({ token }) => {
 
             <p className="hidden lg:block font-semibold">
               {currency}{item.price}
+            </p>
+
+            <p className="hidden lg:block text-gray-600">
+              {formatAddedDate(item.date)}
             </p>
 
             <div className="mt-4 lg:mt-0 flex lg:justify-center">

@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import validator from "validator";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 import userModel from "../models/userModel.js";
 import { securityLogger, errorLogger } from "../utils/logger.js";
 import fs from "fs";
@@ -21,6 +22,26 @@ const createToken = (id, tokenVersion) => {
 
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?.&])[A-Za-z\d@$!%*?.&]{8,}$/;
+
+const buildTransporter = () => {
+  const host = process.env.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT || 587);
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+
+  if (!host || !user || !pass) {
+    throw new Error("SMTP settings are missing in backend .env");
+  }
+
+  return nodemailer.createTransport({
+    host,
+    port,
+    secure: process.env.SMTP_SECURE === "true" || port === 465,
+    auth: { user, pass },
+  });
+};
+
+const generateResetCode = () => String(Math.floor(100000 + Math.random() * 900000));
 
 const buildCookieOptions = () => {
   const isProduction = process.env.NODE_ENV === "production";
@@ -266,6 +287,95 @@ const adminLogin = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  try {
+    const email = String(req.body.email || "").trim().toLowerCase();
+
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ success: false, message: "Please enter a valid email." });
+    }
+
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.json({ success: true, message: "If this email exists, a reset code was sent." });
+    }
+
+    const resetCode = generateResetCode();
+    user.passwordResetCode = await bcrypt.hash(resetCode, 10);
+    user.passwordResetExpires = new Date(Date.now() + 15 * 60 * 1000);
+    await user.save();
+
+    const transporter = buildTransporter();
+    const from = process.env.PASSWORD_RESET_FROM || process.env.SMTP_USER;
+
+    await transporter.sendMail({
+      from,
+      to: email,
+      subject: "Your WolfFitness password reset code",
+      text: `Use this code to reset your WolfFitness password: ${resetCode}. It expires in 15 minutes.`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
+          <h2>Password reset</h2>
+          <p>Use this code to reset your WolfFitness password. It expires in 15 minutes.</p>
+          <p style="font-size: 24px; font-weight: bold; letter-spacing: 2px;">${resetCode}</p>
+        </div>
+      `,
+    });
+
+    return res.json({ success: true, message: "Reset code sent! Check your email." });
+  } catch (error) {
+    errorLogger.error({
+      event: "Forgot Password - Server Error",
+      message: error.message,
+      stack: error.stack,
+    });
+    return res.status(500).json({ success: false, message: error.message || "Failed to send reset code." });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const email = String(req.body.email || "").trim().toLowerCase();
+    const code = String(req.body.code || "").trim();
+    const password = String(req.body.password || "");
+
+    if (!validator.isEmail(email) || !code) {
+      return res.status(400).json({ success: false, message: "Email and reset code are required." });
+    }
+
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must be at least 8 chars and include uppercase, lowercase, number, and special character.",
+      });
+    }
+
+    const user = await userModel.findOne({ email });
+    if (!user || !user.passwordResetCode || !user.passwordResetExpires || user.passwordResetExpires < new Date()) {
+      return res.status(400).json({ success: false, message: "Invalid or expired reset code." });
+    }
+
+    const isCodeMatch = await bcrypt.compare(code, user.passwordResetCode);
+    if (!isCodeMatch) {
+      return res.status(400).json({ success: false, message: "Invalid or expired reset code." });
+    }
+
+    user.password = await bcrypt.hash(password, 10);
+    user.passwordResetCode = "";
+    user.passwordResetExpires = null;
+    user.tokenVersion = Number(user.tokenVersion || 0) + 1;
+    await user.save();
+
+    return res.json({ success: true, message: "Password changed successfully. Please log in." });
+  } catch (error) {
+    errorLogger.error({
+      event: "Reset Password - Server Error",
+      message: error.message,
+      stack: error.stack,
+    });
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
 
 // -------------------- LOGOUT USER --------------------
 const logoutUser = async (req, res) => {
@@ -489,4 +599,4 @@ const getAllUsers = async (req, res) => {
     return res.status(500).json({ success: false, message: "Server Error" });
   }
 };
-export { loginUser, registerUser, adminLogin, logoutUser, getUserProfile, updateUserProfile, updateDeliveryAddress, getDeliveryAddress, getAllUsers };
+export { loginUser, registerUser, adminLogin, forgotPassword, resetPassword, logoutUser, getUserProfile, updateUserProfile, updateDeliveryAddress, getDeliveryAddress, getAllUsers };
