@@ -7,8 +7,13 @@ const connectDB = async () => {
     })
     mongoose.set('strictQuery', true);
 
-    // Use the MONGODB_URI directly without appending database name
-    await mongoose.connect(process.env.MONGODB_URI)
+    const mongoUri = process.env.MONGODB_ATLAS_URI || process.env.MONGODB_URI;
+
+    if (!mongoUri) {
+        throw new Error("MongoDB connection string is missing. Set MONGODB_URI or MONGODB_ATLAS_URI.");
+    }
+
+    await mongoose.connect(mongoUri)
 
 }
 

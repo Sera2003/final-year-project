@@ -38,6 +38,7 @@ const buildTransporter = () => {
     port,
     secure: process.env.SMTP_SECURE === "true" || port === 465,
     auth: { user, pass },
+    family: 4,
     connectionTimeout: Number(process.env.SMTP_TIMEOUT_MS || 10000),
     greetingTimeout: Number(process.env.SMTP_TIMEOUT_MS || 10000),
     socketTimeout: Number(process.env.SMTP_TIMEOUT_MS || 10000),
